@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anshraj Solanki - Web Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --card: #1a1a26;
+    --accent: #6c63ff;
+    --accent2: #00d4aa;
+    --text: #f0f0ff;
+    --muted: #8888aa;
+    --border: rgba(108,99,255,0.2);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,10,15,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; justify-content: space-between; align-items: center; height: 60px;
+  }
+  .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--accent); letter-spacing: 1px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 80px; }
+  .hero-tag { display: inline-block; background: rgba(108,99,255,0.15); border: 1px solid var(--border); color: var(--accent); font-size: 0.8rem; padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem; letter-spacing: 1px; }
+  .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { font-size: 1.1rem; color: var(--muted); max-width: 540px; margin-bottom: 2.5rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #fff; padding: 0.75rem 1.8rem;
+    border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    transition: transform 0.2s, opacity 0.2s; border: none; cursor: pointer;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--text); padding: 0.75rem 1.8rem;
+    border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.95rem;
+    border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .stat-row { display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .stat h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--accent2); }
+  .stat p { font-size: 0.85rem; color: var(--muted); }
+
+  .sec-label { font-size: 0.75rem; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .sec-title { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 3rem; }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1rem; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.2rem 1rem; text-align: center; transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .skill-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .skill-card p { font-size: 0.85rem; color: var(--muted); }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .project-tag { display: inline-block; background: rgba(0,212,170,0.1); color: var(--accent2); font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; margin-bottom: 0.8rem; }
+  .project-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 0.6rem; }
+  .project-card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.2rem; }
+  .project-link { color: var(--accent); font-size: 0.85rem; text-decoration: none; font-weight: 500; }
+  .project-link:hover { text-decoration: underline; }
+
+  .contact-box {
+    background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+    padding: 3rem; text-align: center;
+  }
+  .contact-box h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 1rem; }
+  .contact-box p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .contact-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(108,99,255,0.1); border: 1px solid var(--border);
+    color: var(--text); padding: 0.6rem 1.2rem; border-radius: 50px;
+    text-decoration: none; font-size: 0.9rem; transition: border-color 0.2s;
+  }
+  .contact-chip:hover { border-color: var(--accent); }
+
+  footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">AS.</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <span class="hero-tag">✦ Available for Freelance Work</span>
+  <h1>Hi, I'm <span>Anshraj</span><br>Web Developer</h1>
+  <p>I build clean, fast, and modern websites for businesses and startups. Specialized in HTML, CSS & JavaScript.</p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary">View My Work</a>
+    <a href="https://wa.me/918866288498" class="btn-outline">Hire Me 💬</a>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><h3>3+</h3><p>Projects Completed</p></div>
+    <div class="stat"><h3>100%</h3><p>Client Satisfaction</p></div>
+    <div class="stat"><h3>Fast</h3><p>Delivery Guaranteed</p></div>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="sec-label">What I Know</p>
+  <h2 class="sec-title">My Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-icon">🌐</div><p>HTML5</p></div>
+    <div class="skill-card"><div class="skill-icon">🎨</div><p>CSS3</p></div>
+    <div class="skill-card"><div class="skill-icon">⚡</div><p>JavaScript</p></div>
+    <div class="skill-card"><div class="skill-icon">📱</div><p>Responsive Design</p></div>
+    <div class="skill-card"><div class="skill-icon">🚀</div><p>Fast Loading</p></div>
+    <div class="skill-card"><div class="skill-icon">🔍</div><p>Basic SEO</p></div>
+    <div class="skill-card"><div class="skill-icon">🎯</div><p>Landing Pages</p></div>
+    <div class="skill-card"><div class="skill-icon">💼</div><p>Business Sites</p></div>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="sec-label">My Work</p>
+  <h2 class="sec-title">Recent Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <span class="project-tag">Web App</span>
+      <h3>Smart Society</h3>
+      <p>Society management web app with member directory, notice board, and complaint tracking for residential societies.</p>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+    <div class="project-card">
+      <span class="project-tag">Software</span>
+      <h3>Online Doctor Software</h3>
+      <p>Digital platform for doctors to manage appointments, patient records, and prescriptions online.</p>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+    <div class="project-card">
+      <span class="project-tag">Finance App</span>
+      <h3>Expense Tracker</h3>
+      <p>Personal finance tracker to manage daily expenses, set budgets, and visualize spending patterns.</p>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-box">
+    <h2>Let's Work Together 🤝</h2>
+    <p>Need a website for your business? I'll build it fast and within your budget. Starting from ₹5,000 only.</p>
+    <div class="contact-links">
+      <a href="https://wa.me/918866288498" class="contact-chip">💬 WhatsApp: 8866288498</a>
+      <a href="mailto:anshrajsolanki09@gmail.com" class="contact-chip">📧 Gmail</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Anshraj Solanki · Web Developer · Surat, Gujarat 🇮🇳</p>
+</footer>
+
+</body>
+</html>
